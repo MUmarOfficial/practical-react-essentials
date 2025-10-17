@@ -7,7 +7,7 @@ type Props = {
 
 const MenuItem = (props: Props) => {
   return (
-    <li className="flex justify-between p-3 border-2 b cursor-pointer transition duration-300 rounded-lg bg-[#1a1a1a] backdrop-blur-xl shadow-lg w-full">
+    <li className="flex justify-between p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:outline-none focus:border-white">
       <h2 className="text-xl">{props.item.name}</h2>
       <span className="bg-black size-6 text-center rounded">
         {props.item.quantity}

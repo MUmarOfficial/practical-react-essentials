@@ -1,6 +1,6 @@
 interface ButtonProps {
   text?: string;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 const Button = ({ text = `submit`, onClick }: ButtonProps) => {
