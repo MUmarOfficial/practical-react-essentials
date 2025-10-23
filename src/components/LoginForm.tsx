@@ -14,7 +14,7 @@ const LoginForm = () => {
       className="flex flex-col gap-6 m-7 p-7 justify-center  border-2 border-transparent transition duration-300 hover:border-white rounded-2xl bg-black backdrop-blur-xl shadow-lg max-w-md min-w-xs mx-auto"
       onSubmit={submitForm}
     >
-      <h1 className="text-3xl font-bold text-white mb-4">Login Form</h1>
+      <h1 className="text-3xl font-semibold text-white mb-4">Login Form</h1>
       <input
         type="email"
         value={email}

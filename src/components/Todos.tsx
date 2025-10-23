@@ -23,7 +23,7 @@ const Todos = () => {
 
   return (
     <ul className="flex flex-col gap-5 m-7 p-7 justify-center  border-2 border-transparent transition duration-300 hover:border-white rounded-2xl bg-black backdrop-blur-xl shadow-lg max-w-md min-w-xs mx-auto">
-      <h1 className="text-3xl font-bold text-white mb-4">Todos</h1>
+      <h1 className="text-3xl font-semibold text-white mb-4">Todos</h1>
       {todos.map((todoItem) => {
         return (
           <li key={todoItem.id}>
