@@ -8,8 +8,6 @@ class LoginClassForm extends React.Component {
 
   submitForm(ev: SyntheticEvent) {
     ev.preventDefault();
-    const target = ev.target as HTMLFormElement;
-    console.log(target, this.state);
   }
 
   render(): React.ReactNode {
@@ -18,7 +16,7 @@ class LoginClassForm extends React.Component {
         className="flex flex-col gap-6 m-7 p-7 justify-center  border-2 border-transparent transition duration-300 hover:border-white rounded-2xl bg-black backdrop-blur-xl shadow-lg max-w-md min-w-xs mx-auto"
         onSubmit={this.submitForm.bind(this)}
       >
-        <h1 className="text-3xl font-bold text-white mb-4">Login Form</h1>
+        <h1 className="text-3xl font-semibold text-white mb-4">Login Form</h1>
         <input
           type="email"
           placeholder="Enter your email"

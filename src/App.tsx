@@ -8,15 +8,18 @@ import WelcomeMessage from "./components/WelcomeMessage";
 function App() {
   return (
     <>
-      <WelcomeMessage isLoggedIn={true} user={{
-        name: "Umar",
-        type: "admin"
-      }}/>
+      <WelcomeMessage
+        isLoggedIn={true}
+        user={{
+          name: "Umar",
+          type: "admin",
+        }}
+      />
       <div id="root">
-      <Cart />
-      <Counter />
-      <LoginForm />
-      <Todos />
+        <Cart />
+        <Counter />
+        <LoginForm />
+        <Todos />
       </div>
     </>
   );

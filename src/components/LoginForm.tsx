@@ -5,8 +5,6 @@ const LoginForm = () => {
   const [password, setPassword] = useState("");
   const submitForm = (event: SyntheticEvent) => {
     event.preventDefault();
-    const target = event.target as HTMLFormElement;
-    console.log(target, { email, password });
   };
 
   return (
