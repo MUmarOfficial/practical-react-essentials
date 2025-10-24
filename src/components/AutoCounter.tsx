@@ -23,7 +23,6 @@ const AutoCounter = () => {
     }, 1000);
     return timer;
   };
-  const stopCounter = () => {};
   const resetCounter = () => setCount(0);
 
   return (
@@ -32,9 +31,8 @@ const AutoCounter = () => {
       <p>{`count is ${count}`}</p>
       <div className="card">
         <Button text={`start Counter`} onClick={startCounter}></Button>
-        <Button text={`stop Counter`} onClick={stopCounter}></Button>
-      </div>
       <Button text="reset Counter" onClick={resetCounter}></Button>
+      </div>
     </section>
   );
 };
