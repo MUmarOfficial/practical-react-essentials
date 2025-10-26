@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "../App.css";
-import Button from "./Button";
+import Button from '@mui/material/Button';
 
 const AutoCounter = () => {
   const [count, setCount] = useState(0);
@@ -30,8 +30,8 @@ const AutoCounter = () => {
       <h1 className="text-3xl">Auto Counter</h1>
       <p>{`count is ${count}`}</p>
       <div className="card">
-        <Button text={`start Counter`} onClick={startCounter}></Button>
-      <Button text="reset Counter" onClick={resetCounter}></Button>
+        <Button variant="outlined" onClick={startCounter}>start Counter</Button>
+        <Button variant="outlined" onClick={resetCounter}>reset Counter</Button>
       </div>
     </section>
   );

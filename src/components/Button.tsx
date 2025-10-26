@@ -1,10 +1,9 @@
-
 import styles from "./Button.module.css";
+
 interface ButtonProps {
   text?: string;
   onClick?: () => void;
 }
-
 
 const Button = ({ text = `submit`, onClick }: ButtonProps) => {
   return (
@@ -17,7 +16,6 @@ const Button = ({ text = `submit`, onClick }: ButtonProps) => {
     >
       {text}
     </button>
-    // <StyledButton>{text}</StyledButton>
   );
 };
 

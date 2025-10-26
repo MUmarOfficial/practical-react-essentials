@@ -5,6 +5,7 @@ import StyledInput from "./StyledInput";
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  
   const submitForm = (event: SyntheticEvent) => {
     event.preventDefault();
   };

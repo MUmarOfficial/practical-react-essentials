@@ -7,11 +7,18 @@ import LoginForm from "./components/LoginForm";
 import Todos from "./components/Todos";
 import WelcomeMessage from "./components/WelcomeMessage";
 import PostsPage from "./PostsPage";
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+
+const theme = createTheme({
+  colorSchemes: {
+    dark: true,
+  },
+});
 
 function App() {
   const [showCounter, setShowCounter] = useState(false);
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <WelcomeMessage
         isLoggedIn={true}
         user={{
@@ -35,7 +42,7 @@ function App() {
         Toggle Show Counter
       </button>
       <PostsPage />
-    </>
+    </ThemeProvider>
   );
 }
 
