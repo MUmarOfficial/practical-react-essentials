@@ -1,21 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TodoItem from "./TodoItem";
-
-type Todo = {
-  text: string;
-  id: number;
-  done: boolean;
-};
+import getTodos from "../api/todo-api";
+import type { Todo } from "../types";
 
 const Todos = () => {
-  const [todos, setTodos] = useState<Todo[]>([
-    { text: "AWS", id: 1, done: false },
-    { text: "Node", id: 2, done: false },
-    { text: "TypeScript", id: 3, done: false },
-    { text: "React", id: 4, done: false },
-    { text: "Express", id: 5, done: false },
-    { text: "MongoDB", id: 6, done: false },
-  ]);
+  const [todos, setTodos] = useState<Todo[]>([]);
+  const [finishedCount, setFinishedCount] = useState(0);
+
+  const fetchTodos = async () => {
+    const todosData = await getTodos();
+    setTodos(todosData);
+  };
+
+  useEffect(() => {
+    fetchTodos();
+  }, []);
+
+  useEffect(() => {
+    const compCount = todos.filter(todo => todo.completed).length;
+    setFinishedCount(compCount);
+  }, [todos])
+
   const [todoText, setTodoText] = useState("");
 
   const deleteItem = (itemId: number) => {
@@ -26,7 +31,7 @@ const Todos = () => {
   const handleToggleDone = (itemId: number) => {
     setTodos((prev) =>
       prev.map((todo) =>
-        todo.id === itemId ? { ...todo, done: !todo.done } : todo
+        todo.id === itemId ? { ...todo, completed: !todo.completed } : todo
       )
     );
   };
@@ -35,9 +40,10 @@ const Todos = () => {
     setTodos((todos) => {
       return [
         {
-          text: todoText,
+          userId: Date.now(),
           id: Date.now(),
-          done: false,
+          title: todoText,
+          completed: false,
         },
         ...todos,
       ];
@@ -47,6 +53,7 @@ const Todos = () => {
   return (
     <section className="m-7 p-7 justify-center border-2 border-transparent transition duration-300 hover:border-white rounded-2xl bg-black backdrop-blur-xl shadow-lg mx-auto">
       <h1 className="text-3xl font-semibold text-white mb-2">Todos</h1>
+      <p className="text-xl">Completed: <span className="text-green-600">{ finishedCount }</span></p>
       <form
         onSubmit={(event) => {
           event.preventDefault();
@@ -66,7 +73,7 @@ const Todos = () => {
         </button>
       </form>
       <ul
-        className="min-w-xs lg:max-h-80 grid gap-5 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+        className="min-w-xs grid gap-5 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
         style={{
           gridTemplateColumns: undefined,
         }}

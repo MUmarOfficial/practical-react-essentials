@@ -1,10 +1,5 @@
-import { type FC, useEffect } from "react";
-
-type Todo = {
-  text: string;
-  id: number;
-  done: boolean;
-};
+import { type FC } from "react";
+import type { Todo } from "../types";
 
 type TodoItemProps = {
   item: Todo;
@@ -13,13 +8,6 @@ type TodoItemProps = {
 };
 
 const TodoItem: FC<TodoItemProps> = ({ item, onDelete, onToggle }) => {
-  useEffect(() => {
-    console.log(`component rendered for item ${item.id}`);
-
-    return () => {
-      console.log(`component removed for item ${item.id}`);
-    };
-  }, []);
   return (
     <li
       key={item.id}
@@ -28,11 +16,11 @@ const TodoItem: FC<TodoItemProps> = ({ item, onDelete, onToggle }) => {
       <div className="flex items-center gap-2">
         <input
           type="checkbox"
-          checked={item.done || false}
+          checked={item.completed || false}
           onChange={() => onToggle(item.id)}
         />
-        <p className={item.done ? "line-through text-gray-400" : ""}>
-          {item.text}
+        <p className={item.completed ? "line-through text-gray-400" : ""}>
+          {item.title}
         </p>
       </div>
       <button className="button" onClick={() => onDelete(item.id)}>
