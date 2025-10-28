@@ -1,11 +1,5 @@
 import { useEffect, useState } from "react";
-
-type Post = {
-  userId: number;
-  id: number;
-  title: string;
-  body: string;
-};
+import type { Post } from "./types";
 
 const PostsPage = () => {
   const [posts, setPosts] = useState<Post[]>([]);
