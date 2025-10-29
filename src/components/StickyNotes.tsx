@@ -6,16 +6,19 @@ import {
     Card,
     Box,
 } from "@mui/material";
-import { type FC } from "react";
+import { useContext, type FC } from "react";
+import { AppContext } from "../AppContext";
 import type { Note } from "../types";
 
 type StickyNoteItemProps = {
     note: Note;
-    toggleStarNote: (noteId: number) => void;
-    deleteNote: (noteId: number) => void;
 };
 
-const StickyNote: FC<StickyNoteItemProps> = ({ note, toggleStarNote, deleteNote }) => {
+
+const StickyNote: FC<StickyNoteItemProps> = ({ note }) => {
+
+    const { deleteNote, toggleStarNote } = useContext(AppContext)
+
     return (
         <Box sx={{ minWidth: 200 }}>
             <Card variant="outlined" className="max-w-sm relative">

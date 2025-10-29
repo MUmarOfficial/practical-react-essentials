@@ -9,6 +9,7 @@ import WelcomeMessage from "./components/WelcomeMessage";
 import PostsPage from "./PostsPage";
 import type { Note } from "./types";
 import Notes from "./components/Notes";
+import { AppContext } from "./AppContext";
 
 function App() {
   const [showCounter, setShowCounter] = useState(false);
@@ -62,7 +63,11 @@ function App() {
 
 
   return (
-    <>
+    <AppContext.Provider value={{
+      notes,
+      toggleStarNote,
+      deleteNote,
+    }}>
       <WelcomeMessage
         isLoggedIn={true}
         user={{
@@ -74,7 +79,7 @@ function App() {
         <Cart />
         <Counter />
         <LoginForm />
-        <Notes notes={notes} toggleStarNote={toggleStarNote} deleteNote={deleteNote}/>
+        <Notes />
         <Todos />
         {showCounter && <AutoCounter />}
       </div>
@@ -87,7 +92,7 @@ function App() {
         Toggle Show Counter
       </button>
       <PostsPage />
-    </>
+    </AppContext.Provider>
   );
 }
 
