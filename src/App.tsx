@@ -10,6 +10,7 @@ import PostsPage from "./PostsPage";
 import type { Note } from "./types";
 import Notes from "./components/Notes";
 import { AppContext } from "./AppContext";
+import useWindowResize from "./hooks/useWindowResize";
 
 function App() {
   const [showCounter, setShowCounter] = useState(false);
@@ -47,6 +48,8 @@ function App() {
     },
   ]);
 
+  const size = useWindowResize();
+
   const toggleStarNote = (id: number) => {
     setNotes((prevNotes) =>
       prevNotes.map((note) =>
@@ -66,33 +69,36 @@ function App() {
     <AppContext.Provider value={{
       notes,
       toggleStarNote,
-      deleteNote,
+      deleteNote
     }}>
-      <WelcomeMessage
-        isLoggedIn={true}
-        user={{
-          name: "Umar",
-          type: "admin",
-        }}
-      />
-      <div id="root">
-        <Cart />
-        <Counter />
-        <LoginForm />
-        <Notes />
-        <Todos />
-        {showCounter && <AutoCounter />}
-      </div>
-      <button
-        className="button min-w-5 mx-auto"
-        onClick={() => {
-          setShowCounter((show) => !show);
-        }}
-      >
-        Toggle Show Counter
-      </button>
-      <PostsPage />
-    </AppContext.Provider>
+      {size.width < 318 ? <h1>Resolution not Supported</h1> : <>
+        <WelcomeMessage
+          isLoggedIn={true}
+          user={{
+            name: "Umar",
+            type: "admin",
+          }}
+        />
+        <div id="root">
+          <Cart />
+          <Counter />
+          <LoginForm />
+          <Notes />
+          <Todos />
+          {showCounter && <AutoCounter />}
+        </div>
+        <button
+          className="button min-w-5 mx-auto"
+          onClick={() => {
+            setShowCounter((show) => !show);
+          }}
+        >
+          Toggle Show Counter
+        </button>
+        <PostsPage />
+      </>
+      }
+    </AppContext.Provider >
   );
 }
 
