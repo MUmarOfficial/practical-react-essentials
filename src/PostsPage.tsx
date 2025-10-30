@@ -1,19 +1,19 @@
 import { useEffect, useState } from "react";
 import type { Post } from "./types";
+import useFetch from "./hooks/useFetch";
 
 const PostsPage = () => {
   const [posts, setPosts] = useState<Post[]>([]);
-
-  const getPosts = async () => {
-    const data = await fetch("https://jsonplaceholder.typicode.com/posts");
-    const jsonData = await data.json();
-    setPosts(jsonData);
-  };
+  const { data, loading } = useFetch<Post[]>("https://jsonplaceholder.typicode.com/posts");
 
   useEffect(() => {
     // Run on Component mount
-    getPosts();
-  }, []);
+    setPosts(data ?? []);
+  }, [data]);
+
+  if (loading) {
+    return <h1 className="mx-auto text-2xl text-center">Loading......</h1>
+  }
 
   return (
     <section className="flex flex-col gap-5 m-7 p-7 justify-center  border-2 border-transparent transition duration-300 hover:border-white rounded-2xl bg-black backdrop-blur-xl shadow-lg max-w-7xl min-w-xs mx-auto">
